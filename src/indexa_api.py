@@ -13,7 +13,7 @@ from upalette import get_colors
 
 
 URI_DF = "../data/indexa.xlsx"
-URI_PLOT = "../results/indexa.html"
+URI_PLOT = "../results/indexa_api.html"
 URL = 'https://api.indexacapital.com/plans/mutual/{risk}/history/{size}'
 SIZES = {"A": 1000, "B": 10000, "C": 100000}
 
@@ -38,8 +38,8 @@ def get_indexa_funds_data(token=None):
     return dfg.fillna(method="ffill")
 
 
-def plot_indexa(df=None):
-
+def plot_indexa_api(df=None):
+    """ plot indexa calc """
     if df is not None:
         df = pd.read_excel(URI_DF)
 
@@ -63,7 +63,7 @@ def main():
     df.to_excel(URI_DF)
     print("Indexa data stored")
 
-    plot_indexa(df)
+    plot_indexa_api(df)
 
 
 
