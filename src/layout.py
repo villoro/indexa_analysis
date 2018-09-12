@@ -71,7 +71,7 @@ def get_layout():
                     ]
                 )),
                 ("Risk", dcc.Checklist(
-                    id="drop_size", values=[1, 5, 10],
+                    id="drop_risk", values=[1, 5, 10],
                     options=[{'label': x, 'value': x} for x in range(1, 11)]
                 )),
             ]), id="sidebar", style=c.STYLE_SIDEBAR
