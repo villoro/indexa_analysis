@@ -1,7 +1,5 @@
 sublime.sublime-project
 sublime.sublime-workspace
-/data
-*/data
 /results
 */results
 *.pyc
