@@ -2,6 +2,8 @@ sublime.sublime-project
 sublime.sublime-workspace
 /data
 */data
+/results
+*/results
 *.pyc
 __pycache__
 */__pycache__
