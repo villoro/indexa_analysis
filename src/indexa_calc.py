@@ -12,8 +12,6 @@ from upalette import get_colors
 URI_STOCKS = "../data/stocks.xlsx"
 URI_DATA = "../data/data.xlsx"
 URI_PLOT = "../results/indexa_calc.html"
-URL = 'https://api.indexacapital.com/plans/mutual/{risk}/history/{size}'
-SIZES = {"A": 1000, "B": 10000, "C": 100000}
 
 
 def get_prices_etfs():
@@ -40,24 +38,30 @@ def get_prices_etfs():
 
 def get_prices_funds(df_in):
     """ Get fund prices """
-    dist = pd.read_excel(URI_STOCKS, sheet_name="Distribution", index_col=0).to_dict()
+    dist = pd.read_excel(URI_STOCKS, sheet_name="Distribution", index_col=0)
     
     last_v = df_in.iloc[-1, :]
-    
+
     dfg = pd.DataFrame()
 
-    for i in range(1, 11):
-        df = df_in.copy()
+    for size in dist["Size"].unique():
+        for i in range(1, 11):
+            df = df_in.copy()
+            
+            percents = dist[dist["Size"] == size].to_dict()
+            for x, perc in percents[i].items():
+                df[x] = perc*df[x]/100
+                
+            # Keep only etf presents in plan
+            df = (df/last_v)[list(percents[10].keys())]
 
-        for x, perc in dist[i].items():
-            df[x] = perc*df[x]/100
+            df = pd.DataFrame(1/df.sum(axis=1))
+            df.columns = ["{}{}C".format(size, i)]
 
-        df = pd.DataFrame(1/(df/last_v).sum(axis=1))
-        df.columns = ["B{}".format(i)]
-
-        dfg = pd.concat([dfg, df], axis=1)
+            dfg = pd.concat([dfg, df], axis=1)
         
     return dfg
+
 
 def plot_indexa_calc(df):
     data = []

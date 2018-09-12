@@ -29,7 +29,7 @@ def get_indexa_funds_data(token=None):
         for risk in range(1, 11):
             res = requests.get(URL.format(size=size, risk=risk), headers={'X-AUTH-TOKEN': token})
             df = pd.DataFrame(res.json()["history_data"]).T.set_index("date")[["return"]]
-            df.columns = ["{}{}".format(pref, risk)]
+            df.columns = ["{}{}R".format(pref, risk)]
             dfg = pd.concat([dfg, df], axis=1)
 
         print("Funds of size {} downloaded".format(size))
