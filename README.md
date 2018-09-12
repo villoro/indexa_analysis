@@ -1,5 +1,5 @@
-# Stock Analysis
-This repository contains some stock analysis.
+# Indexa Analysis
+This is a [dash](https://plot.ly/products/dash/) app that analysis some funds from [Indexa capital](https://indexacapital.com/es).
 
 ## Authors
 * [Arnau Villoro](villoro.com)
