@@ -5,7 +5,7 @@
 from upalette import get_colors
 
 
-DASH_TITLE = "Indexa analysis"
+DASH_TITLE = "Indexa análisis"
 
 HEIGHT_HEADER = 75
 WIDTH_SIDEBAR = 350

@@ -63,16 +63,23 @@ def get_layout():
         # Sidebar
         html.Div(
             create_sidebar([
-                ("Size", dcc.Checklist(
+                ("Tamaño", dcc.Checklist(
                     id="drop_size", values=["B"], options=[
-                        {'label': 'menos de 10k', 'value': 'A'},
-                        {'label': 'de 10k a 100k', 'value': 'B'},
-                        {'label': 'más de 100k', 'value': 'C'}
+                        {'label': 'A: menos de 10.000€', 'value': 'A'},
+                        {'label': 'B: de 10.000€ a 100.000€', 'value': 'B'},
+                        {'label': 'C: más de 100.000€', 'value': 'C'}
                     ]
                 )),
-                ("Risk", dcc.Checklist(
+                ("Riesgo", dcc.Checklist(
                     id="drop_risk", values=[1, 5, 10],
                     options=[{'label': x, 'value': x} for x in range(1, 11)]
+                )),
+                ("Datos", dcc.Checklist(
+                    id="drop_method", values=["R"],
+                    options=[
+                        {'label': 'C: Calculados con los ETFs', 'value': 'C'},
+                        {'label': 'R: Con datos de indexa (API)', 'value': 'R'},
+                    ]
                 )),
             ]), id="sidebar", style=c.STYLE_SIDEBAR
         ),
