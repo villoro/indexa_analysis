@@ -17,8 +17,8 @@ def get_color_from_name(name):
     return get_colors((colors[method][size], max(50, (int(risk) - 1)*100)))
 
 
-def plot_evolution(df):
-    """ Plot stock evolution """
+def plot_one_invest(df):
+    """ Plot stock evolution with one invest at the begging """
 
     data = []
     for x in df.columns:
@@ -31,7 +31,27 @@ def plot_evolution(df):
     layout = go.Layout(
         xaxis={"title": "Fecha de inversión"},
         yaxis={"title": "Porcentaje ganancias"},
-        title="Porcentaje de ganancias obtenidas en función de la fecha de inversión"
+        title="Realizando sólo una inversión inicial"
     )
+    return go.Figure(data=data, layout=layout)
 
+
+def plot_per_invest(df):
+    """ Plot stock evolution with periodics invests over time """
+
+    data = []
+    for x in df.columns:
+        df_aux = df[[x]].sort_index(ascending=False).dropna()
+        df_aux = df_aux.rolling(df.shape[0], min_periods=1).mean()
+        data.append(
+            go.Scatter(
+                x=df_aux.index, y=100*df_aux[x], name=x, marker={"color": get_color_from_name(x)}
+            )
+        )
+
+    layout = go.Layout(
+        xaxis={"title": "Fecha de inversión"},
+        yaxis={"title": "Porcentaje ganancias"},
+        title="Sólo con aportaciones mensuales (misma cantidad cada mes)"
+    )
     return go.Figure(data=data, layout=layout)
