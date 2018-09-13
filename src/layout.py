@@ -87,7 +87,13 @@ def get_layout():
         # Body
         html.Div(
             create_body([
-                dcc.Graph(id="plot_evo", config=PLOT_CONFIG)
+                dcc.Graph(id="plot_one_invest", config=PLOT_CONFIG),
+                dcc.Graph(id="plot_per_invest", config=PLOT_CONFIG),
+                html.H6(
+                    """* Las etiquetas de las series siguen el formato TRD.
+                    Dónde T indica el tamaño (A, B o C), R el riesgo (entre 1 i 10) y D los datos (C o R).
+                    """
+                )
             ]), id="body", style=c.STYLE_BODY
         ),
     ])
