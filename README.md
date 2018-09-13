@@ -5,9 +5,9 @@ It is possible to see a live demo here: [expensor_heroku](https://indexa-analysi
 
 Some screenshots of the app:
 
-![Screenshoot_1](assets/screenshot_1.png)
-![Screenshoot_2](assets/screenshot_2.png)
-![Screenshoot_3](assets/screenshot_3.png)
+![Screenshoot_1](assets/screenshot1.png)
+![Screenshoot_2](assets/screenshot2.png)
+![Screenshoot_3](assets/screenshot3.png)
 
 ## Instructions
 At this moment the data is not automatically updated. In the future data should be automatically updated.
