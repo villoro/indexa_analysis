@@ -10,7 +10,7 @@ Some screenshots of the app:
 ![Screenshoot_3](assets/screenshot_3.png)
 
 ## Instructions
-At this moment the data is not automatically updated. I might update it at some point or I m
+At this moment the data is not automatically updated. In the future data should be automatically updated.
 If you want **to update the data** you should:
 1. Download funds data from financial times. For example: https://markets.ft.com/data/funds/tearsheet/historical?s=IE00B04FFJ44:EUR
 2. Get an indexa_capital token and store it as an evironment variable called `INDEXA_TOKEN`
