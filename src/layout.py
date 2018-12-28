@@ -2,6 +2,7 @@
     Dash app
 """
 
+import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
@@ -54,46 +55,47 @@ def create_body(datalist):
 def get_layout():
     """ Creates the dash layout """
 
-    return html.Div([
-        # Header
-        html.Div([
-            html.H1(c.DASH_TITLE, id="title", style={"color": "white"})
-        ], style=c.STYLE_HEADER),
+    navbar = dbc.Navbar(
+        [],
+        brand=c.DASH_TITLE,
+        brand_href="/",
+        sticky="top",
+        color="success"
+    )
 
-        # Sidebar
-        html.Div(
-            create_sidebar([
-                ("Tamaño", dcc.Checklist(
-                    id="drop_size", values=["B"], options=[
-                        {'label': 'A: menos de 10.000€', 'value': 'A'},
-                        {'label': 'B: de 10.000€ a 100.000€', 'value': 'B'},
-                        {'label': 'C: más de 100.000€', 'value': 'C'}
-                    ]
-                )),
-                ("Riesgo", dcc.Checklist(
-                    id="drop_risk", values=[1, 5, 10],
-                    options=[{'label': x, 'value': x} for x in range(1, 11)]
-                )),
-                ("Datos", dcc.Checklist(
-                    id="drop_method", values=["R"],
-                    options=[
-                        {'label': 'C: Calculados con los ETFs', 'value': 'C'},
-                        {'label': 'R: Con datos de indexa (API)', 'value': 'R'},
-                    ]
-                )),
-            ]), id="sidebar", style=c.STYLE_SIDEBAR
-        ),
+    filters = html.Div(
+        create_sidebar([
+            ("Tamaño", dcc.Checklist(
+                id="drop_size", values=["B"], options=[
+                    {'label': 'A: menos de 10.000€', 'value': 'A'},
+                    {'label': 'B: de 10.000€ a 100.000€', 'value': 'B'},
+                    {'label': 'C: más de 100.000€', 'value': 'C'}
+                ]
+            )),
+            ("Riesgo", dcc.Checklist(
+                id="drop_risk", values=[1, 5, 10],
+                options=[{'label': x, 'value': x} for x in range(1, 11)]
+            )),
+            ("Datos", dcc.Checklist(
+                id="drop_method", values=["R"],
+                options=[
+                    {'label': 'C: Calculados con los ETFs', 'value': 'C'},
+                    {'label': 'R: Con datos de indexa (API)', 'value': 'R'},
+                ]
+            )),
+        ]), id="sidebar"
+    )
 
-        # Body
-        html.Div(
-            create_body([
-                dcc.Graph(id="plot_one_invest", config=PLOT_CONFIG),
-                dcc.Graph(id="plot_per_invest", config=PLOT_CONFIG),
-                html.H6(
-                    """* Las etiquetas de las series siguen el formato TRD.
-                    Dónde T indica el tamaño (A, B o C), R el riesgo (entre 1 i 10) y D los datos (C o R).
-                    """
-                )
-            ]), id="body", style=c.STYLE_BODY
-        ),
-    ])
+    content = html.Div(
+        create_body([
+            dcc.Graph(id="plot_one_invest", config=PLOT_CONFIG),
+            dcc.Graph(id="plot_per_invest", config=PLOT_CONFIG),
+            html.H6(
+                """* Las etiquetas de las series siguen el formato TRD.
+                Dónde T indica el tamaño (A, B o C), R el riesgo (entre 1 i 10) y D los datos (C o R).
+                """
+            )
+        ]), id="body"
+    )
+
+    return html.Div([navbar, filters, content])

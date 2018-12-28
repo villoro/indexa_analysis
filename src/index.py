@@ -5,12 +5,13 @@
 import pandas as pd
 from dash import Dash
 from dash.dependencies import Input, Output
+from dash_bootstrap_components.themes import BOOTSTRAP
 
 import plots
 import constants as c
 from layout import get_layout
 
-APP = Dash("auth")
+APP = Dash('indexa_analysis', external_stylesheets=[BOOTSTRAP])
 APP.config.supress_callback_exceptions = True
 
 APP.title = c.DASH_TITLE
