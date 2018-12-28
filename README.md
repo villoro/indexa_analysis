@@ -1,7 +1,7 @@
 # Indexa Analysis
-This is a [dash](https://plot.ly/products/dash/) app that analysis some funds from [Indexa capital](https://indexacapital.com/es).
+This is a [dash](https://plot.ly/products/dash/) app that analyzes some funds from [Indexa capital](https://indexacapital.com/es).
 
-It is possible to see a live demo here: [expensor_heroku](https://indexa-analysis.herokuapp.com/)
+It is possible to see a live demo here: [indexa_heroku](https://indexa-analysis.herokuapp.com/)
 
 Some screenshots of the app:
 
